@@ -30,9 +30,22 @@ class loadState extends Phaser.State {
     }
 
     create() {
-        this.game.menuMusic = this.game.sound.add('menuMusic', 1, true);
-        this.loadingBar.cropEnabled = false;
-        this.game.state.start('menu');
+        navigator.getUserMedia = navigator.getUserMedia
+            || navigator.webkitGetUserMedia
+            || navigator.mozGetUserMedia;
+
+        this.game.pitchAnalyzer = new audioAnalyzer();
+
+        // ask for permission to use mic, if successfull setup audio and load menu
+        navigator.getUserMedia({ video : false, audio : true }, (stream) => {
+            this.game.pitchAnalyzer.initialize(stream);
+
+            this.loadingBar.cropEnabled = false;
+            this.game.state.start('menu');
+        }, console.log);
+
+
+        // this.game.menuMusic = this.game.sound.add('menuMusic', 1, true);
     }
 
 }

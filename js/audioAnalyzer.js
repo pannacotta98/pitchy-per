@@ -1,31 +1,36 @@
 class audioAnalyzer {
     constructor() {
-        navigator.getUserMedia = navigator.getUserMedia
-                              || navigator.webkitGetUserMedia
-                              || navigator.mozGetUserMedia;
-
-        // ask for permission to use mic, if successfull setup audio
-        navigator.getUserMedia({ video : false, audio : true }, (stream) => {
-            this.ctx = new AudioContext();
-            this.mic = this.ctx.createMediaStreamSource(stream);
-            this.analyzer = this.ctx.createAnalyser();
-
-            this.mic.connect(this.analyzer);
-
-            this.rawPitchData = new Uint8Array(this.analyzer.frequencyBinCount); // float vs byte?
-
-        }, console.log);
-        
-        console.log('audioAnalyzer created', this);
-        
+        // hnmm
     }
     
-    getPitch = () => {
-        
-        console.log(this.analyzer);
-        this.analyzer.getByteFrequencyData(this.rawPitchData);
-        
+    initialize(stream) {
+        this.ctx = new AudioContext();
+        this.mic = this.ctx.createMediaStreamSource(stream);
+        this.analyzer = this.ctx.createAnalyser();
+    
+        this.mic.connect(this.analyzer);
+    
+        this.rawPitchData = new Uint8Array(this.analyzer.frequencyBinCount); // float vs byte?
+    }
 
+    getStrongestFrequency() {
+        this.analyzer.getByteFrequencyData(this.rawPitchData);
+
+        let strongest = 0;
+        for (let i = 0; i < this.analyzer.frequencyBinCount; i++) {
+            if (harmonicProductSpectrum[i] > harmonicProductSpectrum[strongest]) {
+                strongest = i;
+            }
+        }
+
+        // return frequency in Hz
+        return (strongest * this.ctx.sampleRate / this.analyzer.fftSize);
+    }
+    
+    // not super accurate
+    getPitch() {
+        // put updated frequency data in rawPitchData
+        this.analyzer.getByteFrequencyData(this.rawPitchData);
 
         let harmonicProductSpectrum = Array.from(this.rawPitchData);
 
@@ -39,9 +44,6 @@ class audioAnalyzer {
             harmonicProductSpectrum[i] *= half[i] * third[i] * fourth[i] * fifth[i];
         }
 
-        console.log(harmonicProductSpectrum);
-        
-
         // find stronges freq after HPS
         let strongest = 0;
         for (let i = 0; i < this.analyzer.frequencyBinCount; i++) {
@@ -50,19 +52,22 @@ class audioAnalyzer {
             }
         }
 
+        // return frequency in Hz
         return (strongest * this.ctx.sampleRate / this.analyzer.fftSize);
     }
 
 
-    // downsamples array by removing samples 
-    simpleDownSample(array, factor) {
+    // downsamples array by removing samples
+    // returns an array with every 'factor' item from 'inputArray' starting at 0
+    simpleDownSample(inputArray, factor) {
         const newArray = [];
 
-        for (let i = 0; i < array.length; i++) {
+        for (let i = 0; i < inputArray.length; i++) {
             if (i % factor == 0) { 
-                newArray.push(array[i]);
+                newArray.push(inputArray[i]);
             }
         }
+
         return newArray;
     }
 }

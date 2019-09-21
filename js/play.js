@@ -34,10 +34,13 @@ class playState extends Phaser.State {
         this.scoreLabel.alignTo(this.camera.world.bounds, Phaser.TOP_CENTER, 0, -85);
 
 
+        this.pitchDisp = this.add.text(50, 50, `pitch: `, {
+            font: '25px Indie Flower', fill: '#000000', align: 'center'
+        });
+        // this.pitchDisp.anchor.setTo(0.5, 0.5);
+        this.pitchDisp.alignTo(this.camera.world.bounds, Phaser.TOP_LEFT, -85, -85);
 
         // TEEEEST
-        this.testAudio = new audioAnalyzer();
-        console.log('here1');
         
         // setTimeout(this.testAudio.getPitch, 5000);
     }
@@ -56,8 +59,8 @@ class playState extends Phaser.State {
 
         // console.log(this.testAudio);
         
-        console.log('here2');
-        this.testAudio.getPitch(); // the audio isnt prperly initialized yet...
+        
+        this.pitchDisp.text = 'pitch: ' + Math.round(this.game.pitchAnalyzer.getPitch());
         this.incrementScore();
     }
 
