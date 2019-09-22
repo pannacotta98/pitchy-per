@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>plotTesting</title>
+
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+</head>
+<body>
+    <div id="plot"></div>
+    <h1 id="freq"></h1>
+    <h1 id="pitch"></h1>
+    <h1 id="difference"></h1>
+    <script src="../js/AudioHandler.js"></script>
+
+    <script>
+    let minFreq = 0;
+    let maxFreq = 7000;
+    let maxLevel = 255;
+
+    const analyzer = new AudioHandler();
+    const pitchDisp = document.getElementById('pitch');
+    const freqDisp = document.getElementById('freq');
+    const differenceDisp = document.getElementById('difference');
+
+    navigator.getUserMedia({ video : false, audio : true }, (stream) => {
+        analyzer.initialize(stream);
+        drawChart();
+    }, console.log);
+
+
+    function drawChart() {
+        var data = analyzer.getFrequencySpectrumPairs();
+        // var hpsData = analyzer.getHarmonicSpectrumPairs();
+        
+        let myConfig = {
+            type: 'line',
+            'scale-y': {
+                'min-value': 0,
+                'max-value': maxLevel
+            },
+            'scale-x': {
+                'min-value': minFreq,
+                'max-value': maxFreq
+            },
+            series: [
+                { values: data },
+                // { values: hpsData }
+            ]
+        };
+    
+        zingchart.render({
+            id: 'plot',
+            data: myConfig,
+        });
+
+        
+        pitchDisp.innerHTML = 'HPS peak: ' + Math.round(analyzer.getPitch()) + ' Hz';
+        freqDisp.innerHTML = 'Frequency peak: ' + Math.round(analyzer.getStrongestFrequency()) + ' Hz';
+
+        differenceDisp.innerHTML = 'Difference: ' + 
+            Math.round(analyzer.getPitch() - analyzer.getStrongestFrequency());
+
+
+        window.requestAnimationFrame(drawChart);
+    }
+
+
+    </script>
+    
+</body>
+</html>

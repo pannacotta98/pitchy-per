@@ -3,7 +3,7 @@ class playState extends Phaser.State {
         this.game.time.advancedTiming = true; // for fps display
         
 
-        this.game.stage.backgroundColor = "#ff0000";
+        this.game.stage.backgroundColor = "#ff1111"; 
 
         // add background
         // this.background = this.add.tileSprite(0, 0, this.game.width, this.game.height - 128, 'gameBackground');
@@ -25,7 +25,13 @@ class playState extends Phaser.State {
         // this.addObstacle();
 
 
+        // create player
+        this.player = new Player(this.game, 20, 50);
+        this.add.existing(this.player);
+        this.player.events.onKilled.add(this.gameOver, this);
 
+
+        // setup score label
         this.score = 0;
         this.scoreLabel = this.add.text(50, 50, 'score:\n' + this.score, {
             font: '25px Indie Flower', fill: '#000000', align: 'center'
@@ -34,15 +40,11 @@ class playState extends Phaser.State {
         this.scoreLabel.alignTo(this.camera.world.bounds, Phaser.TOP_CENTER, 0, -85);
 
 
+        // display pitch (for testing)
         this.pitchDisp = this.add.text(50, 50, `pitch: `, {
             font: '25px Indie Flower', fill: '#000000', align: 'center'
         });
-        // this.pitchDisp.anchor.setTo(0.5, 0.5);
         this.pitchDisp.alignTo(this.camera.world.bounds, Phaser.TOP_LEFT, -85, -85);
-
-        // TEEEEST
-        
-        // setTimeout(this.testAudio.getPitch, 5000);
     }
 
     update() {
@@ -54,13 +56,12 @@ class playState extends Phaser.State {
         // this.physics.arcade.overlap(this.player, this.obstacles, (player, obstacle) => {
         //     player.damage(1);
         //     obstacle.destroy();
-        //     this.updateLifeDisp();
         // }, null, this);
 
-        // console.log(this.testAudio);
         
-        
+        // update pitch display (for testing)
         this.pitchDisp.text = 'pitch: ' + Math.round(this.game.pitchAnalyzer.getPitch());
+
         this.incrementScore();
     }
 

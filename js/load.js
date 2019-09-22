@@ -34,7 +34,7 @@ class loadState extends Phaser.State {
             || navigator.webkitGetUserMedia
             || navigator.mozGetUserMedia;
 
-        this.game.pitchAnalyzer = new audioAnalyzer();
+        this.game.pitchAnalyzer = new AudioHandler();
 
         // ask for permission to use mic, if successfull setup audio and load menu
         navigator.getUserMedia({ video : false, audio : true }, (stream) => {

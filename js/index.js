@@ -38,7 +38,7 @@ function startGame() {
     new Game();
 }
 
-// load webfont, script included in html
+// load webfont, script included in html, seems to not aways work...
 WebFont.load({
     active: startGame(), // start game when font is loaded
     google: {
