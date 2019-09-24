@@ -17,7 +17,7 @@
 
     <script>
     let minFreq = 0;
-    let maxFreq = 7000;
+    let maxFreq = 4000;
     let maxLevel = 255;
 
     const analyzer = new AudioHandler();
@@ -33,7 +33,23 @@
 
     function drawChart() {
         var data = analyzer.getFrequencySpectrumPairs();
-        // var hpsData = analyzer.getHarmonicSpectrumPairs();
+        
+        var hpsData = analyzer.getHarmonicSpectrumPairs().map((pair) => {
+            return [pair[0], pair[1]*0.000000002];
+        });
+
+        // var allZeros = true;
+        // hpsData.forEach(element => {
+        //     if (element[1] != 0) allZeros = false;
+        // });
+        // if (allZeros) console.log('only zeros');
+        
+
+        // console.log(data[0].length, hpsData[0].length);
+        
+        // console.log(analyzer.getHarmonicSpectrumPairs());
+        
+        // console.log(hpsData);
         
         let myConfig = {
             type: 'line',
@@ -45,9 +61,14 @@
                 'min-value': minFreq,
                 'max-value': maxFreq
             },
+            plot:{
+                marker:{
+                    visible:false
+                }
+            },
             series: [
                 { values: data },
-                // { values: hpsData }
+                { values: hpsData }
             ]
         };
     

@@ -26,3 +26,5 @@ To add changes:
 - `git push origin master` - sync with remote (github)
 
 To see local changes: `git status`
+
+To sync with remote and merge with local repository: `git pull`
