@@ -37,14 +37,17 @@ class AudioHandler {
 
         let harmonicProductSpectrum = Array.from(this.rawPitchData);
 
+
+        // FSJKDAJSÖLJFKLJDKLFJSDKLFJKSDFJKDJF
         // tots great code
         const half   = this.simpleDownSample(this.rawPitchData, 2);
         const third  = this.simpleDownSample(this.rawPitchData, 3);
         const fourth = this.simpleDownSample(this.rawPitchData, 4);
         const fifth  = this.simpleDownSample(this.rawPitchData, 5);
+        // const sixth  = this.simpleDownSample(this.rawPitchData, 6);
         
         for (let i = 0; i < fifth.length; i++) {
-            harmonicProductSpectrum[i] *= half[i] * third[i] * fourth[i] * fifth[i];
+            harmonicProductSpectrum[i] *= half[i] * third[i] * fourth[i] * fifth[i] // * sixth[i];
         }
 
 

@@ -3,7 +3,7 @@ class playState extends Phaser.State {
         this.game.time.advancedTiming = true; // for fps display
         
 
-        this.game.stage.backgroundColor = "#ff1111"; 
+        this.game.stage.backgroundColor = "#000000"; 
 
         // add background
         // this.background = this.add.tileSprite(0, 0, this.game.width, this.game.height - 128, 'gameBackground');
@@ -34,7 +34,7 @@ class playState extends Phaser.State {
         // setup score label
         this.score = 0;
         this.scoreLabel = this.add.text(50, 50, 'score:\n' + this.score, {
-            font: '25px Indie Flower', fill: '#000000', align: 'center'
+            font: '25px Indie Flower', fill: '#ffffff', align: 'center'
         });
         this.scoreLabel.anchor.setTo(0.5, 0.5);
         this.scoreLabel.alignTo(this.camera.world.bounds, Phaser.TOP_CENTER, 0, -85);
@@ -42,7 +42,7 @@ class playState extends Phaser.State {
 
         // display pitch (for testing)
         this.pitchDisp = this.add.text(50, 50, `pitch: `, {
-            font: '25px Indie Flower', fill: '#000000', align: 'center'
+            font: '25px Indie Flower', fill: '#ffffff', align: 'center'
         });
         this.pitchDisp.alignTo(this.camera.world.bounds, Phaser.TOP_LEFT, -85, -85);
     }
@@ -67,7 +67,7 @@ class playState extends Phaser.State {
 
     //debug stuff
     render() {
-        // this.game.debug.body(this.player);
+        this.game.debug.body(this.player);
         // this.game.debug.bodyInfo(this.player, 32, 32);
         // this.game.debug.text(`totalElapsedSeconds : ${this.game.time.totalElapsedSeconds().toFixed(5)}`, 32, 32);
         // this.game.debug.text(this.game.time.fps, 2, 14, "#00ff00");

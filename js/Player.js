@@ -6,19 +6,22 @@ class Player extends Phaser.Sprite {
         this.health = 1;
 
         this.game.physics.enable(this);
-        this.body.gravity.y = 1500;
-        this.body.allowGravity = true;
+        // this.body.gravity.y = 1500;
+        // this.body.allowGravity = true;
         this.body.collideWorldBounds = true;
 
 
         // this.jump = this.jump.bind(this);
     }
 
+    update() {
+        this.y = this.game.pitchAnalyzer.getPitch();
+    }
+
 
     damage(amount) {
         super.damage(amount);
-        this.animations.play('damage');
-        this.hurtSound.play();
+        // this.animations.play('damage');
 
         return this;
     }
