@@ -1,0 +1,12 @@
+
+
+Ljudfysik Blast 24/9
+
+Ett problem just nu är att pitchen kan byta oktav vid samma tonfall. Dvs,
+för ett tonfall ger HPS både 177 och 354. 	Detta skulle leda till
+att "fågeln" hoppar mellan olika positioner instant.
+
+Ev Lösning till detta: Kolla på föregående pitch och kolla om den nya pitchen är dubbelt
+så stor/hälften. Och i så fall hålla sig till föregående värde.
+Problem med detta: Kan vara fel från början, då kommer den hålla sig kvar vid fel värde.
+
