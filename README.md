@@ -10,3 +10,19 @@ Latest version available at https://pannacotta98.github.io/TFYA65-Projekt/
 
 To load assets when developing a local server is needed
 
+## Git stuff
+
+Download from github first time:
+
+- click 'clone or download' on github page and copy link
+- open the folder u want the project in on your computer
+- run git bash from that folder
+- run `git clone LINK`
+
+To add changes:
+
+- `git add .` - add all changes
+- `git commit -m "your commit message"` 
+- `git push origin master` - sync with remote (github)
+
+To see local changes: `git status`

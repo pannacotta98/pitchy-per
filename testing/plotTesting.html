@@ -12,7 +12,7 @@
     <div id="plot"></div>
     <h1 id="freq"></h1>
     <h1 id="pitch"></h1>
-    <h1 id="difference"></h1>
+    <h1 id="ratio"></h1>
     <script src="../js/AudioHandler.js"></script>
 
     <script>
@@ -23,7 +23,7 @@
     const analyzer = new AudioHandler();
     const pitchDisp = document.getElementById('pitch');
     const freqDisp = document.getElementById('freq');
-    const differenceDisp = document.getElementById('difference');
+    const ratioDisp = document.getElementById('ratio');
 
     navigator.getUserMedia({ video : false, audio : true }, (stream) => {
         analyzer.initialize(stream);
@@ -60,8 +60,8 @@
         pitchDisp.innerHTML = 'HPS peak: ' + Math.round(analyzer.getPitch()) + ' Hz';
         freqDisp.innerHTML = 'Frequency peak: ' + Math.round(analyzer.getStrongestFrequency()) + ' Hz';
 
-        differenceDisp.innerHTML = 'Difference: ' + 
-            Math.round(analyzer.getPitch() - analyzer.getStrongestFrequency());
+        ratioDisp.innerHTML = 'Ratio: ' + 
+            Math.round(analyzer.getStrongestFrequency() / analyzer.getPitch());
 
 
         window.requestAnimationFrame(drawChart);
