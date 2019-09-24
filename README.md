@@ -27,4 +27,4 @@ To add changes:
 
 To see local changes: `git status`
 
-To get changes from remote and merge with local: `git pull` ?
+To sync with remote and merge with local repository: `git pull`
