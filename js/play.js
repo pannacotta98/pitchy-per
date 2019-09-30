@@ -70,11 +70,11 @@ class playState extends Phaser.State {
 
     //debug stuff
     render() {
-        this.game.debug.body(this.player);
+        // this.game.debug.body(this.player);
         // this.game.debug.bodyInfo(this.player, 32, 32);
         // this.game.debug.text(`totalElapsedSeconds : ${this.game.time.totalElapsedSeconds().toFixed(5)}`, 32, 32);
         // this.game.debug.text(this.game.time.fps, 2, 14, "#00ff00");
-        this.obstacles.forEachAlive((member) => {this.game.debug.body(member);}, this);
+        // this.obstacles.forEachAlive((member) => {this.game.debug.body(member);}, this);
         // this.game.debug.text(this.player.health, 100, 14,"#ffffff");
     }
 
