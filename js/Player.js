@@ -1,7 +1,7 @@
 // TODO remove old stuff!
 class Player extends Phaser.Sprite {
     constructor(game, x, y) {
-        super(game, x, y, game.selectedChar, 'jump.png'); // tappar ner spealren från toppen hehe!!!
+        super(game, x, y, game.selectedChar, 'char'); // tappar ner spealren från toppen hehe!!!
 
         this.health = 1;
 

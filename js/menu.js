@@ -19,7 +19,7 @@ class menuState extends Phaser.State {
 
 
         // text
-        let textText = this.add.text(0, 0, 'Experience the life of a student', {
+        let textText = this.add.text(0, 0, 'Pitchy Per', {
             font: '50px Indie Flower', fill: '#ffffff', stroke: '#000000', strokeThickness: 6
         }).alignTo(this.logo, Phaser.RIGHT_CENTER, 10, 0);
 
