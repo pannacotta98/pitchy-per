@@ -1,6 +1,14 @@
+// TODO experiemtn with hpsFactor and fftlength? zero padding
 class AudioHandler {
     constructor() {
         this.hpsFactors = 5;
+
+        // fftSize must be a power of 2 between 2^5 and 2^15,
+        // so one of: 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, and 32768.
+        // Defaults to 2048. // MDN
+        this.fftSize = 4096;
+
+        this.smoothingTimeConstant = 0.9; // default: 0.8
     }
     
     // makes the AudioHandler ready for use with the input stream 'stream'
@@ -8,6 +16,10 @@ class AudioHandler {
         this.ctx = new AudioContext();
         this.mic = this.ctx.createMediaStreamSource(stream);
         this.analyzer = this.ctx.createAnalyser();
+
+        // set parameters for the analyzer node
+        this.analyzer.fftSize = this.fftSize;
+        this.analyzer.smoothingTimeConstant = this.smoothingTimeConstant;
     
         this.mic.connect(this.analyzer);
     
@@ -58,19 +70,49 @@ class AudioHandler {
         return this.toHertz(strongest);
     }
     
-    // returns frequency of the biggest peak in HPS in Hz
+    // !(returns frequency of the biggest peak in HPS in Hz) changed maybe
     getPitch() {
         const harmonicProductSpectrum = this.getHarmonicProductSpectrum();
         
-        // find stronges freq after HPS
-        let strongest = 0;
+        // find stronges freq after HPS, and the strongest peak with a lower frequency
+        let strongest = 0, strongestBelow = 0;
         for (let i = 0; i < this.analyzer.frequencyBinCount; i++) {
             if (harmonicProductSpectrum[i] > harmonicProductSpectrum[strongest]) {
+                strongestBelow = strongest;
                 strongest = i;
             }
         }
 
-        return this.toHertz(strongest);
+        // try to fix octave error
+        // TODO code could be improved!
+        if (Math.abs(strongestBelow - strongest*0.5) < 10 // 10?
+            && harmonicProductSpectrum[strongestBelow] > 0.5*harmonicProductSpectrum[strongest]) {
+                
+            // console.log('corrected octave');
+            return this.toHertz(strongestBelow)
+        } else {
+            return this.toHertz(strongest)
+        }
+        // return this.toHertz(strongest);
+
+
+
+        // // try to fix octave error
+        // let octaveBelowStrength = 0;
+        // let octaveCorrection = 0;
+        // [Math.floor(strongest/2) - 1, Math.floor(strongest/2), Math.floor(strongest/2) + 1].forEach((i) => {
+        //     if (harmonicProductSpectrum[i] > octaveBelowStrength 
+        //         && harmonicProductSpectrum[i] > 0.7*strongest) {
+                
+        //         octaveBelowStrength = harmonicProductSpectrum[i];
+        //         octaveCorrection = i;
+        //     }
+        // })
+
+        // return (octaveBelowStrength > 0) ? this.toHertz(octaveCorrection) : this.toHertz(strongest)
+
+        
+
     }
     
     // returns raw harmonic product spectrum

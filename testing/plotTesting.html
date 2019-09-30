@@ -49,7 +49,7 @@
         
         // console.log(analyzer.getHarmonicSpectrumPairs());
         
-        // console.log(hpsData);
+        console.log(hpsData);
         
         let myConfig = {
             type: 'line',
@@ -81,8 +81,8 @@
         pitchDisp.innerHTML = 'HPS peak: ' + Math.round(analyzer.getPitch()) + ' Hz';
         freqDisp.innerHTML = 'Frequency peak: ' + Math.round(analyzer.getStrongestFrequency()) + ' Hz';
 
-        ratioDisp.innerHTML = 'Ratio: ' + 
-            Math.round(analyzer.getStrongestFrequency() / analyzer.getPitch());
+        // ratioDisp.innerHTML = 'Ratio: ' + 
+        //     Math.round(analyzer.getStrongestFrequency() / analyzer.getPitch());
 
 
         window.requestAnimationFrame(drawChart);

@@ -20,9 +20,12 @@ class playState extends Phaser.State {
         // this.player.events.onKilled.add(this.gameOver, this);
 
 
-        // this.obstacles = this.add.group();
-        // this.obstacles.enableBody = true;
-        // this.addObstacle();
+        this.obstacleSpeed = 90;
+        this.obstacles = this.add.group();
+        this.obstacles.enableBody = true;
+        this.addObstacle();
+         // add obstacles and lives all the time
+        this.obstacleTimer = this.time.events.loop(2000, this.addObstacle, this);
 
 
         // create player
@@ -53,10 +56,10 @@ class playState extends Phaser.State {
         //     if (player.isJumping) player.run();
         // });
 
-        // this.physics.arcade.overlap(this.player, this.obstacles, (player, obstacle) => {
-        //     player.damage(1);
-        //     obstacle.destroy();
-        // }, null, this);
+        this.physics.arcade.overlap(this.player, this.obstacles, (player, obstacle) => {
+            player.damage(1);
+            obstacle.destroy();
+        }, null, this);
 
         
         // update pitch display (for testing)
@@ -71,8 +74,25 @@ class playState extends Phaser.State {
         // this.game.debug.bodyInfo(this.player, 32, 32);
         // this.game.debug.text(`totalElapsedSeconds : ${this.game.time.totalElapsedSeconds().toFixed(5)}`, 32, 32);
         // this.game.debug.text(this.game.time.fps, 2, 14, "#00ff00");
-        // this.obstacles.forEachAlive((member) => {this.game.debug.body(member);}, this);
+        this.obstacles.forEachAlive((member) => {this.game.debug.body(member);}, this);
         // this.game.debug.text(this.player.health, 100, 14,"#ffffff");
+    }
+
+    addObstacle() {
+        const obstaclePosition = [30, 45, 200, 230];
+
+        let newObstacle = this.obstacles.create(
+            this.game.width + 50,
+            obstaclePosition[this.rnd.between(0, 3)], //position of ground - desired height of obstacle
+            'obstacle'
+        );
+        // newObstacle.body.setSize(24, 24, -10, 4); // verkar funka med 24x32-bild
+        newObstacle.anchor.setTo(0.5, 0.5);
+        newObstacle.lifespan = 20000;
+        newObstacle.body.velocity.x = - this.obstacleSpeed;
+
+        console.log('created obstacle');
+        
     }
 
     menu() {
@@ -88,7 +108,6 @@ class playState extends Phaser.State {
     }
 
     gameOver() {
-        this.gameMusic.stop();
         this.game.state.start('gameOver', true, false, this.score);
     }
 

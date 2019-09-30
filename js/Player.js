@@ -10,12 +10,30 @@ class Player extends Phaser.Sprite {
         // this.body.allowGravity = true;
         this.body.collideWorldBounds = true;
 
+        this.minPitch = 50; // Hz
+        this.maxPitch = 300; // Hz
 
         // this.jump = this.jump.bind(this);
     }
 
     update() {
-        this.y = this.game.pitchAnalyzer.getPitch();
+        let boundedPitch = this.game.pitchAnalyzer.getPitch();
+
+        // probably temporary
+        if (boundedPitch === 0) {
+            return;
+            // this.y = (this.y >= 1) ? this.y - 0.001 : 0; 
+        }
+
+        // make sure boundedPitch is in the range [minPitch, maxPitch]
+        boundedPitch = Math.max(this.minPitch, Math.min(this.maxPitch, boundedPitch));
+
+        // smoothing the movement
+        const finalDest = this.game.height - ((boundedPitch - this.minPitch)/(this.maxPitch-this.minPitch))
+                        * this.game.height;
+        const movement = (finalDest - this.y) / 10;
+
+        this.y += movement;
     }
 
 
