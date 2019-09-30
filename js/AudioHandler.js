@@ -84,9 +84,9 @@ class AudioHandler {
         }
 
         // try to fix octave error
-        // TODO code could be improved!
-        if (Math.abs(strongestBelow - strongest*0.5) < 10 // 10?
-            && harmonicProductSpectrum[strongestBelow] > 0.5*harmonicProductSpectrum[strongest]) {
+        // TODO fixa lite enligt mailet
+        if (Math.abs(strongestBelow - strongest*0.5) < 10 // 10? 5 eller 6 kanske
+            && harmonicProductSpectrum[strongestBelow] / harmonicProductSpectrum[strongest] > 0.2) {
                 
             // console.log('corrected octave');
             return this.toHertz(strongestBelow)
