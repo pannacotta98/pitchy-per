@@ -15,7 +15,9 @@ class loadState extends Phaser.State {
         this.loadingBar = this.add.sprite(112, 300, 'loadingBar');
         this.load.setPreloadSprite(this.loadingBar);
 
-        this.game.load.image('character', './assets/char_per.png');
+        this.game.load.image('character', './assets/coolare_per.png');
+        this.game.load.image('obstacle', './assets/peter_i_polisbil.png');
+        this.game.load.image('background', './assets/road.png');
 
         // this.game.load.image('logo', './assets/images/Unilife.png');
 

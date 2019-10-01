@@ -3,12 +3,14 @@ class Player extends Phaser.Sprite {
     constructor(game, x, y) {
         super(game, x, y, 'character'); // tappar ner spealren från toppen hehe!!!
 
-        this.health = 1;
+        this.health = 3;
 
         this.game.physics.enable(this);
         // this.body.gravity.y = 1500;
         // this.body.allowGravity = true;
         this.body.collideWorldBounds = true;
+
+        this.body.setSize(100, 100, 5, 15);
 
         this.minPitch = 50; // Hz
         this.maxPitch = 300; // Hz
