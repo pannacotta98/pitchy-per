@@ -43,6 +43,6 @@ function startGame() {
 WebFont.load({
     active: startGame(), // start game when font is loaded
     google: {
-        families: ['Indie Flower']
+        families: ['Slackey']
     }
 });

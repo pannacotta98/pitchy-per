@@ -32,14 +32,14 @@ class playState extends Phaser.State {
         // setup score label
         this.score = 0;
         this.scoreLabel = this.add.text(50, 50, 'score:\n' + this.score, {
-            font: '25px Indie Flower', fill: '#ffffff', align: 'center'
+            font: '25px Slackey', fill: '#ffffff', align: 'center'
         });
         this.scoreLabel.anchor.setTo(0.5, 0.5);
         this.scoreLabel.alignTo(this.camera.world.bounds, Phaser.TOP_CENTER, 0, -85);
 
         // display pitch (for testing)
         this.pitchDisp = this.add.text(50, 50, `pitch: `, {
-            font: '25px Indie Flower', fill: '#ffffff', align: 'center'
+            font: '25px Slackey', fill: '#ffffff', align: 'center'
         });
         this.pitchDisp.alignTo(this.camera.world.bounds, Phaser.TOP_LEFT, -85, -85);
     }
