@@ -6,9 +6,10 @@ class AudioHandler {
         // fftSize must be a power of 2 between 2^5 and 2^15,
         // so one of: 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, and 32768.
         // Defaults to 2048. // MDN
-        this.fftSize = 4096;
+        this.fftSize = 8192; // was at 4096 before
+        this.strengthThreshold = 5000000000; // hacks are the best hehe
 
-        this.smoothingTimeConstant = 0.9; // default: 0.8
+        this.smoothingTimeConstant = 0.5; // default: 0.8
     }
     
     // makes the AudioHandler ready for use with the input stream 'stream'
@@ -83,10 +84,12 @@ class AudioHandler {
             }
         }
 
+        if (harmonicProductSpectrum[strongest] < this.strengthThreshold) return 0;
+
         // try to fix octave error
         // TODO fixa lite enligt mailet
         if (Math.abs(strongestBelow - strongest*0.5) < 10 // 10? 5 eller 6 kanske
-            && harmonicProductSpectrum[strongestBelow] / harmonicProductSpectrum[strongest] > 0.2) {
+            && harmonicProductSpectrum[strongestBelow] / harmonicProductSpectrum[strongest] > 0.5) { // 0.2 before
                 
             // console.log('corrected octave');
             return this.toHertz(strongestBelow)

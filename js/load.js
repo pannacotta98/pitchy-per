@@ -26,6 +26,10 @@ class loadState extends Phaser.State {
         // this.game.load.atlasJSONHash('pen', './assets/images/pen_sheet.png', './assets/images/pen_sheet.json');
 
 
+        // sound effects
+        this.game.load.audio('gameOver', './assets/gameover.wav');
+        this.game.load.audio('highScore', './assets/highscore.wav');
+
         // //music
         // this.game.load.audio('gameMusic', './assets/sound/game_music.wav');
         // this.game.load.audio('menuMusic', './assets/sound/menu_music.mp3');
