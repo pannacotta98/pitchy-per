@@ -20,16 +20,16 @@ class menuState extends Phaser.State {
 
         // text
         let textText = this.add.text(0, 0, 'Pitchy Per', {
-            font: '50px Indie Flower', fill: '#ffffff', stroke: '#000000', strokeThickness: 6
+            font: '50px Slackey', fill: '#ffffff', stroke: '#000000', strokeThickness: 6
         }).alignTo(this.logo, Phaser.RIGHT_CENTER, 10, 0);
 
         const keyGuide = this.add.text(0, 0, 'Press Enter to start', {
-            font: '25px Indie Flower', fill: '#ffffff', stroke: '#000000', strokeThickness: 6
+            font: '25px Slackey', fill: '#ffffff', stroke: '#000000', strokeThickness: 6
         }).alignIn(this.camera.bounds, Phaser.BOTTOM_CENTER, 0, -50);
 
         this.add.text(0, 0, `Current High Score: ${this.game.highScore}`, {
-            font: '25px Indie Flower', fill: '#ffffff', stroke: '#000000', strokeThickness: 6
-        }).alignTo(textText, Phaser.BOTTOM_LEFT, -15);
+            font: '25px Slackey', fill: '#ffffff', stroke: '#000000', strokeThickness: 6
+        }).alignTo(textText, Phaser.BOTTOM_LEFT);
 
         // keyboard
         const enterKey = this.input.keyboard.addKey(Phaser.Keyboard.ENTER);
