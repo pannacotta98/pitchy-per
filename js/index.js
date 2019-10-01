@@ -34,6 +34,7 @@ class Game extends Phaser.Game {
     }
 }
 
+
 function startGame() {
     new Game();
 }
