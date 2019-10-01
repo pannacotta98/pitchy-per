@@ -29,6 +29,7 @@ class loadState extends Phaser.State {
         // sound effects
         this.game.load.audio('gameOver', './assets/gameover.wav');
         this.game.load.audio('highScore', './assets/highscore.wav');
+        this.game.load.audio('hej', './assets/hejjagheterper.wav');
 
         // //music
         // this.game.load.audio('gameMusic', './assets/sound/game_music.wav');

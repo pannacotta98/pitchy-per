@@ -34,6 +34,9 @@ class menuState extends Phaser.State {
         // keyboard
         const enterKey = this.input.keyboard.addKey(Phaser.Keyboard.ENTER);
         enterKey.onDown.addOnce(this.start, this);
+
+
+        this.add.sound('hej').play()
     }
 
     start() {
