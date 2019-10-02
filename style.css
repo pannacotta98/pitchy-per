@@ -3,11 +3,10 @@ body {
     max-width: 1000px;
     padding-top: 40px;
     margin: auto;
-    color: white;
+    color: black;
     font-family: Slackey;
     font-weight: 0.5;
-    stroke: black;
-    stroke-width: 5px;
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
 }
 #game {
     border-style: solid;
