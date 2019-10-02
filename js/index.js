@@ -1,5 +1,3 @@
-
-
 const config = {
     width: 1024,
     height: 576,
@@ -29,11 +27,9 @@ class Game extends Phaser.Game {
             }
         }
 
-
         this.state.start('boot');
     }
 }
-
 
 function startGame() {
     new Game();

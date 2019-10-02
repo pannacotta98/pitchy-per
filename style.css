@@ -1,4 +1,16 @@
 body {
-    background-color: black;
+    background-image: url(./assets/website_background.png);
+    max-width: 1000px;
+    padding-top: 40px;
+    margin: auto;
     color: white;
+    font-family: Slackey;
+    font-weight: 0.5;
+    stroke: black;
+    stroke-width: 5px;
+}
+#game {
+    border-style: solid;
+    border-width: 10px;
+    width: 1024px;
 }

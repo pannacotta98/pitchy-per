@@ -15,7 +15,7 @@ class menuState extends Phaser.State {
         // }
 
 
-        this.logo = this.add.sprite(0, 0, 'character').alignIn(this.camera.bounds, Phaser.TOP_LEFT, -50, -50);
+        this.logo = this.add.sprite(0, 0, 'character').alignIn(this.camera.bounds, Phaser.TOP_LEFT, 0, -50);
 
 
         // text
