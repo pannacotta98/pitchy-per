@@ -18,7 +18,7 @@ class loadState extends Phaser.State {
         this.game.load.image('character', './assets/coolare_per.png');
         this.game.load.image('obstacle', './assets/peter_i_polisbil.png');
         this.game.load.image('background', './assets/road.png');
-        this.game.load.image('site_background', './assets/per_legenden.png');
+        // this.game.load.image('site_background', './assets/per_legenden.png');
 
         // this.game.load.image('logo', './assets/images/Unilife.png');
 
