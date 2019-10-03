@@ -87,7 +87,6 @@ class AudioHandler {
         if (harmonicProductSpectrum[strongest] < this.strengthThreshold) return 0;
 
         // try to fix octave error
-        // TODO fixa lite enligt mailet
         if (Math.abs(strongestBelow - strongest*0.5) < 10 // 10? 5 eller 6 kanske
             && harmonicProductSpectrum[strongestBelow] / harmonicProductSpectrum[strongest] > 0.5) { // 0.2 before
                 
@@ -97,23 +96,6 @@ class AudioHandler {
             return this.toHertz(strongest)
         }
         // return this.toHertz(strongest);
-
-
-
-        // // try to fix octave error
-        // let octaveBelowStrength = 0;
-        // let octaveCorrection = 0;
-        // [Math.floor(strongest/2) - 1, Math.floor(strongest/2), Math.floor(strongest/2) + 1].forEach((i) => {
-        //     if (harmonicProductSpectrum[i] > octaveBelowStrength 
-        //         && harmonicProductSpectrum[i] > 0.7*strongest) {
-                
-        //         octaveBelowStrength = harmonicProductSpectrum[i];
-        //         octaveCorrection = i;
-        //     }
-        // })
-
-        // return (octaveBelowStrength > 0) ? this.toHertz(octaveCorrection) : this.toHertz(strongest)
-
         
 
     }
@@ -123,7 +105,7 @@ class AudioHandler {
         this.analyzer.getByteFrequencyData(this.rawPitchData);
         let harmonicProductSpectrum = Array.from(this.rawPitchData);
         
-        for (let i = 0; i < harmonicProductSpectrum.length / 5; i++) {
+        for (let i = 0; i < harmonicProductSpectrum.length / this.hpsFactors; i++) {
             for (let j = 2; j <= this.hpsFactors; j++) {
                 harmonicProductSpectrum[i] *= this.rawPitchData[j*i];
             }
