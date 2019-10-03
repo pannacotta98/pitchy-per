@@ -15,6 +15,8 @@ class Player extends Phaser.Sprite {
         this.minPitch = 50; // Hz
         this.maxPitch = 300; // Hz
 
+        this.crashSound = this.game.add.sound('crash');
+
         // this.jump = this.jump.bind(this);
     }
 
@@ -41,9 +43,7 @@ class Player extends Phaser.Sprite {
 
     damage(amount) {
         super.damage(amount);
-        // this.animations.play('damage');
-
+        this.crashSound.play();
         return this;
     }
-
 }
