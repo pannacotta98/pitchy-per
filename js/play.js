@@ -32,9 +32,9 @@ class playState extends Phaser.State {
         // show lives
         this.lifeDisp = this.add.group();
         for (let i = 0; i < this.player.health; i++) {
-            this.lifeDisp.create(32 + (40 * i), 32, 'life');
+            this.lifeDisp.create(32 + (40 * i), 20, 'life');
         }
-
+        
         // setup score label
         this.score = 0;
         this.scoreLabel = this.add.text(50, 50, 'score:\n' + this.score, {
@@ -47,7 +47,7 @@ class playState extends Phaser.State {
         this.pitchDisp = this.add.text(50, 50, 'pitch: ', {
             font: '25px Slackey', fill: '#ffffff', align: 'center', stroke: 'black', strokeThickness: '10'
         });
-        this.pitchDisp.alignTo(this.camera.world.bounds, Phaser.TOP_LEFT, -85, -55);
+        this.pitchDisp.alignTo(this.camera.world.bounds, Phaser.TOP_RIGHT, -85, -55);
     }
 
     update() {
