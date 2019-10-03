@@ -29,6 +29,12 @@ class playState extends Phaser.State {
         this.add.existing(this.player);
         this.player.events.onKilled.add(this.gameOver, this);
 
+        // show lives
+        this.lifeDisp = this.add.group();
+        for (let i = 0; i < this.player.health; i++) {
+            this.lifeDisp.create(32 + (40 * i), 32, 'life');
+        }
+
         // setup score label
         this.score = 0;
         this.scoreLabel = this.add.text(50, 50, 'score:\n' + this.score, {
@@ -53,6 +59,7 @@ class playState extends Phaser.State {
         this.physics.arcade.overlap(this.player, this.obstacles, (player, obstacle) => {
             player.damage(1);
             obstacle.destroy();
+            this.updateLifeDisp();
         }, null, this);
 
         
@@ -125,6 +132,19 @@ class playState extends Phaser.State {
     incrementScore() {
         this.score += 1;
         this.scoreLabel.text = 'score:\n' + this.score;
+    }
+
+    updateLifeDisp() {
+        let health = this.player.health; //liv som "delas ut"
+
+        for (let i = 0; i < this.lifeDisp.total; i++) {
+            if (health > 0) {
+                this.lifeDisp.getAt(i).alpha = 1;
+                health--;
+            } else {
+                this.lifeDisp.getAt(i).alpha = 0.2;
+            }
+        }
     }
 
 }

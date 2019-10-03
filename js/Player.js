@@ -3,7 +3,7 @@ class Player extends Phaser.Sprite {
     constructor(game, x, y) {
         super(game, x, y, 'character'); // tappar ner spealren från toppen hehe!!!
 
-        this.health = 3;
+        this.health = 5;
 
         this.game.physics.enable(this);
         // this.body.gravity.y = 1500;
