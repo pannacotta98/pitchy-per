@@ -14,7 +14,7 @@ class menuState extends Phaser.State {
         //     this.game.menuMusic.play();
         // }
 
-        const calibrateButton = this.add.button(200, 200, 'calibrateButton', () => {}, this, 1, 0, 2, 0);
+        const calibrateButton = this.add.button(200, 200, 'calibrateButton', this.calibrate, this, 1, 0, 2, 0);
 
         this.logo = this.add.sprite(0, 0, 'character').alignIn(this.camera.bounds, Phaser.TOP_LEFT, 0, -50);
 
@@ -41,7 +41,10 @@ class menuState extends Phaser.State {
     }
 
     start() {
-        // this.game.state.start('play');
+        this.game.state.start('play');
+    }
+    
+    calibrate() {
         this.game.state.start('calibrate');
     }
 
