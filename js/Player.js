@@ -12,9 +12,6 @@ class Player extends Phaser.Sprite {
 
         this.body.setSize(100, 100, 5, 15);
 
-        this.minPitch = 50; // Hz
-        this.maxPitch = 300; // Hz
-
         this.crashSound = this.game.add.sound('crash');
 
         // this.jump = this.jump.bind(this);
@@ -30,10 +27,10 @@ class Player extends Phaser.Sprite {
         }
 
         // make sure boundedPitch is in the range [minPitch, maxPitch]
-        boundedPitch = Math.max(this.minPitch, Math.min(this.maxPitch, boundedPitch));
+        boundedPitch = Math.max(this.game.minPitch, Math.min(this.game.maxPitch, boundedPitch));
 
         // smoothing the movement
-        const finalDest = this.game.height - ((boundedPitch - this.minPitch)/(this.maxPitch-this.minPitch))
+        const finalDest = this.game.height - ((boundedPitch - this.game.minPitch)/(this.game.maxPitch-this.game.minPitch))
                         * this.game.height;
         const movement = (finalDest - this.y) / 10;
 

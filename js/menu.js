@@ -40,7 +40,8 @@ class menuState extends Phaser.State {
     }
 
     start() {
-        this.game.state.start('play');
+        // this.game.state.start('play');
+        this.game.state.start('calibrate');
     }
 
 

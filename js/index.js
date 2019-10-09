@@ -17,6 +17,7 @@ class Game extends Phaser.Game {
         this.state.add('menu', menuState);
         this.state.add('play', playState);
         this.state.add('gameOver', gameOverState);
+        this.state.add('calibrate', calibrateState);
 
         if (window.localStorage) {
             if (!localStorage.getItem('highScore')) {
@@ -26,6 +27,9 @@ class Game extends Phaser.Game {
                 this.highScore = parseInt(localStorage.getItem('highScore'));
             }
         }
+
+        this.minPitch = 50; // Hz
+        this.maxPitch = 300; // Hz
 
         this.state.start('boot');
     }
