@@ -37,6 +37,7 @@ class loadState extends Phaser.State {
         this.game.load.audio('crash', './assets/crash.wav');
 
         this.game.load.spritesheet('calibrateButton', './assets/button-sprite.png', 201, 71.66);
+        this.game.load.spritesheet('startButton', './assets/start-button-sprite.png', 201, 71.66);
 
         // //music
         // this.game.load.audio('gameMusic', './assets/sound/game_music.wav');

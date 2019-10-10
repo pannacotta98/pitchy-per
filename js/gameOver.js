@@ -26,6 +26,9 @@ class gameOverState extends Phaser.State {
         // this.floor = this.add.tileSprite(0, this.game.height - 128, 1024, 128, 'floor');
         // this.floor.alpha = 0.3;
 
+        this.startButton = this.add.button(450, 400, 'startButton', this.restart, this, 1, 0, 2, 0);
+        this.startButton.alignIn(this.camera.bounds, Phaser.BOTTOM_CENTER, 0, -100);
+
         // show score/highscore
         let nameLabel = this.add.text(20, 10, `Game Over \nScore: ${this.score}`, { // newline to fix text being cut off
             font: '70px Slackey', fill: '#ffffff', stroke: '#000000', strokeThickness: 6
