@@ -23,6 +23,7 @@ class calibrateState extends Phaser.State {
 
         this.calibrateLowButton = this.add.button(200, 200, 'calibrateButton', () => {
             this.calibrating='low'
+            this.deactivateButtons([this.calibrateLowButton, this.calibrateHighButton]);
         }, this, 1, 0, 2, 0);
         // this.calibrateLowButton.anchor.y = this.calibrateHighButton.anchor.x = 0.5;
         this.calibrateLowButton.alignTo(this.minDisp, Phaser.BOTTOM_CENTER, 0, 50);

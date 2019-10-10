@@ -26,7 +26,7 @@ class menuState extends Phaser.State {
         // text
         let textText = this.add.text(0, 0, 'Pitchy Per', {
             font: '50px Slackey', fill: '#ffffff', stroke: '#000000', strokeThickness: 6
-        }).alignTo(this.logo, Phaser.RIGHT_CENTER, 10, 0);
+        }).alignTo(this.logo, Phaser.RIGHT_CENTER, 40, -30);
 
         const keyGuide = this.add.text(0, 0, 'Press Enter to start', {
             font: '25px Slackey', fill: '#ffffff', stroke: '#000000', strokeThickness: 6
