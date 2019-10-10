@@ -52,7 +52,6 @@ class menuState extends Phaser.State {
         this.game.state.start('calibrate');
     }
 
-
     update() {
         // this.physics.arcade.collide(this.player, this.floor, (player, floor) => {
         //     if (player.isJumping) player.run();

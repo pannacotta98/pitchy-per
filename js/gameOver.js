@@ -26,6 +26,8 @@ class gameOverState extends Phaser.State {
         // this.floor = this.add.tileSprite(0, this.game.height - 128, 1024, 128, 'floor');
         // this.floor.alpha = 0.3;
 
+        this.calibrateButton = this.add.button(450, 400, 'calibrateButton', this.calibrate, this, 1, 0, 2, 0);
+        this.calibrateButton.alignIn(this.camera.bounds, Phaser.BOTTOM_CENTER, 0, -200);
         this.startButton = this.add.button(450, 400, 'startButton', this.restart, this, 1, 0, 2, 0);
         this.startButton.alignIn(this.camera.bounds, Phaser.BOTTOM_CENTER, 0, -100);
 
@@ -52,14 +54,13 @@ class gameOverState extends Phaser.State {
 
         const enterKey = this.input.keyboard.addKey(Phaser.Keyboard.ENTER);
         enterKey.onDown.addOnce(this.restart, this);
-
     }
 
     restart() {
         this.game.state.start('play');
     }
 
-    menu() {
-        this.game.state.start('menu');
+    calibrate() {
+        this.game.state.start('calibrate');
     }
 }
