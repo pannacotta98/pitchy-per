@@ -34,10 +34,9 @@ class calibrateState extends Phaser.State {
         // this.calibrateHighButton.anchor.y = this.calibrateHighButton.anchor.x = 0.5;
         this.calibrateHighButton.alignTo(this.maxDisp, Phaser.BOTTOM_CENTER, 0, 50);
 
-        this.startButton = this.add.button(
-            450, 400, 'calibrateButton', this.start, this, 1, 0, 2, 0);
+        this.startButton = this.add.button(450, 400, 'startButton', this.start, this, 1, 0, 2, 0);
         this.startButton.anchor.x = 0.5;
-        this.startButton.alignIn(this.camera.bounds, Phaser.BOTTOM_CENTER, 0, -50);
+        this.startButton.alignIn(this.camera.bounds, Phaser.BOTTOM_CENTER, 0, -100);
         this.deactivateButtons([this.startButton]);
 
 
