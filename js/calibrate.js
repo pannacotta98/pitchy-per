@@ -3,6 +3,9 @@ class calibrateState extends Phaser.State {
         
     }
     create() {
+        this.background = this.add.tileSprite(0, 0, this.game.width, this.game.height, 'background');
+        this.background.alpha = 0.3;
+        
         this.game.minPitch = this.game.maxPitch = 0;
         
         this.hpsData = [];

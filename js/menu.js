@@ -1,9 +1,10 @@
 class menuState extends Phaser.State {
     create() {
         //add background
+        this.background = this.add.tileSprite(0, 0, this.game.width, this.game.height, 'background');
+        this.background.alpha = 0.3;
         // this.game.stage.backgroundColor = "#000000";
         // this.background = this.add.tileSprite(0, 0, this.game.width, this.game.height - 128, 'gameBackground');
-        // this.background.alpha = 0.3;
         // this.floor = this.add.tileSprite(0, this.game.height - 128, 1024, 128, 'floor');
         // this.floor.alpha = 0.3;
         // this.game.physics.enable(this.floor);

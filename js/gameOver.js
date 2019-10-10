@@ -4,6 +4,9 @@ class gameOverState extends Phaser.State {
     }
 
     create() {
+        this.background = this.add.tileSprite(0, 0, this.game.width, this.game.height, 'background');
+        this.background.alpha = 0.3;
+
         let newHighScore = false;
 
         if (this.score > this.game.highScore) {
